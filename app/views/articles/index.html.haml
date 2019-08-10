@@ -2,7 +2,8 @@
   Articles#index
 
 - @articles.each do |article|
-  %div
-    = article.title
-    = article.content
+  = link_to article_path(article) do
+    %div
+      = article.title
+      = article.content
 
