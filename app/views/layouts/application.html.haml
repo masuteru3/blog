@@ -1,13 +1,13 @@
-doctype html
-html
-  head
-    title
-      | Blog
+%doctype html
+%html
+  %head
+    %title
+      Blog
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  body
+  %body
     = link_to 'blog', root_path
     = link_to '新規投稿', new_article_path if user_signed_in?
     = link_to 'サインアップ', new_user_registration_path unless user_signed_in?
