@@ -1,8 +1,2 @@
 %h1 記事編集
-
-= form_with model: @article, local: true do |f|
-  = f.label :title
-  = f.text_field :title 
-  = f.label :content
-  = f.rich_text_area :content
-  = f.submit
+= render 'form'
