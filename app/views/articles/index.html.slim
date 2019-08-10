@@ -1,4 +1,8 @@
 h1
   | Articles#index
-p
-  | Find me in app/views/articles/index.html.erb
+
+- @articles.each do |article|
+  div
+    = article.title
+    = article.content
+

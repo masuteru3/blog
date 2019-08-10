@@ -1,4 +1,8 @@
-h1
-  | Articles#new
-p
-  | Find me in app/views/articles/new.html.erb
+h1 新規投稿
+
+= form_with model: @article, local: true do |f|
+  = f.label :title
+  = f.text_field :title 
+  = f.label :content
+  = f.rich_text_area :content
+  = f.submit
