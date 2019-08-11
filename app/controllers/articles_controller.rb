@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def index
-    @articles = Article.all
+    @articles = Article.all.order(created_at: 'DESC')
   end
 
   def new
@@ -19,6 +19,8 @@ class ArticlesController < ApplicationController
   end
   
   def show
+    @comment = current_user.comments.build if user_signed_in?
+    @comments = @article.comments.order(created_at: 'DESC')
   end
 
   def edit

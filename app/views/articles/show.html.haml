@@ -1,5 +1,25 @@
 %h2= @article.title
+%p
+  投稿者：
+  = @article.user.name
 %p= @article.content
 
-= link_to '編集', edit_article_path(@article)
-= link_to '削除', article_path(@article), method: :delete
+- if user_signed_in? && current_user.id == @article.user_id
+  = link_to '編集', edit_article_path(@article)
+  = link_to '削除', article_path(@article), method: :delete, data: { confirm: '本当に消してもいいですか？'}
+
+%hr
+%h2 コメント
+- if user_signed_in?
+  = form_for [@article, @comment] do |f|
+    = f.label :content
+    = f.text_area :content
+    = f.submit '投稿する'
+
+- @comments.each do |comment|
+  %p
+    = comment.content
+    = comment.created_at
+    - if user_signed_in? && current_user.id == comment.user_id
+      = link_to '削除', article_comment_path(@article, comment), method: :delete, data: { confirm: '本当に消してもいいですか？'}
+  %p= comment.user.name
