@@ -20,7 +20,7 @@ class ArticlesController < ApplicationController
   
   def show
     @comment = current_user.comments.build if user_signed_in?
-    @comments = @article.comments
+    @comments = @article.comments.order(created_at: 'DESC')
   end
 
   def edit
