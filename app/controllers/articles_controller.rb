@@ -19,6 +19,8 @@ class ArticlesController < ApplicationController
   end
   
   def show
+    @comment = current_user.comments.build if user_signed_in?
+    @comments = @article.comments
   end
 
   def edit
