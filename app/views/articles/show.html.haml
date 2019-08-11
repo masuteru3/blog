@@ -6,7 +6,7 @@
 
 - if user_signed_in? && current_user.id == @article.user_id
   = link_to '編集', edit_article_path(@article)
-  = link_to '削除', article_path(@article), method: :delete
+  = link_to '削除', article_path(@article), method: :delete, data: { confirm: '本当に消してもいいですか？'}
 
 %hr
 %h2 コメント
