@@ -15,4 +15,5 @@
   %p
     = comment.content
     = comment.created_at
+    = link_to '削除', article_comment_path(@article, comment), method: :delete, data: { confirm: '本当に消してもいいですか？'}
   %p= comment.user.name
