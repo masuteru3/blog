@@ -4,6 +4,13 @@
   border: none;
 }
 
-.navbar {
-
+.navbar.is-dark {
+  padding-left: 60px;
+  .navbar-brand {
+    font-weight: bold;
+    font-size: 24px;
+  }
+  .button.is-light {
+    margin-left: 19px;
+  }
 }

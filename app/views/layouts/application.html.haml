@@ -20,29 +20,20 @@
           %a.navbar-item
             記事一覧
           %a.navbar-item
-            Documentation
+            使い方
           .navbar-item.has-dropdown.is-hoverable
-            %a.navbar-link
-              = current_user.name if user_signed_in?
-            .navbar-dropdown
-              %a.navbar-item
-                About
-              %a.navbar-item
-                Jobs
-              %a.navbar-item
-                Contact
-              %hr.navbar-divider/
-              %a.navbar-item
-                Report an issue
+            - if user_signed_in?
+              %a.navbar-link
+                = current_user.name if user_signed_in?
+              .navbar-dropdown
+                = link_to 'ログアウト', destroy_user_session_path(current_user), class: 'navbar-item', method: :delete if user_signed_in?
+                %hr.navbar-divider/
+                = link_to 'ログアウト', destroy_user_session_path(current_user), class: 'navbar-item', method: :delete if user_signed_in?
         .navbar-end
           .navbar-item
             %strong= link_to '新規登録', new_user_registration_path, class: 'button is-primary' unless user_signed_in?
             = link_to 'ログイン', new_user_session_path, class: 'button is-light' unless user_signed_in?
             %strong= link_to '新規投稿', new_article_path, class: 'button is-primary'if user_signed_in?
-    = link_to '新規投稿', new_article_path if user_signed_in?
-    = link_to 'サインアップ', new_user_registration_path unless user_signed_in?
-    = link_to 'ログイン', new_user_session_path unless user_signed_in?
-    = link_to 'ログアウト', destroy_user_session_path(current_user), method: :delete if user_signed_in?
 
     = render 'shared/flash'
     = yield
