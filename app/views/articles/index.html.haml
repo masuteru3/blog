@@ -4,6 +4,7 @@
 - @articles.each do |article|
   = link_to article_path(article) do
     %div
-      = article.title
-      = article.content
+      %hr
+        = article.title
+        = article.content
 
