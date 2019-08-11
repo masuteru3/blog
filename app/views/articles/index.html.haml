@@ -1,0 +1,10 @@
+%h1
+  Articles#index
+
+- @articles.each do |article|
+  = link_to article_path(article) do
+    %div
+      %hr
+        = article.title
+        = article.content
+
