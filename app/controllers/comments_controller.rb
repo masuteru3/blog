@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to article_path(params[:article_id]), notice: 'コメントを投稿しました。'
     else
-      render 'article/show'
+      redirect_to article_path(params[:article_id]), alert: 'コメントを投稿出来ませんでした。'
     end
   end
 
