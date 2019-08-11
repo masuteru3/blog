@@ -8,10 +8,9 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %nav.navbar{"aria-label" => "main navigation", :role => "navigation"}
+    %nav.navbar.is-dark{"aria-label" => "main navigation", :role => "navigation"}
       .navbar-brand
-        %a.navbar-item{:href => "https://bulma.io"}
-          %img{:height => "28", :src => "https://bulma.io/images/bulma-logo.png", :width => "112"}/
+        = link_to 'BLOG', root_path, class: 'navbar-item'
         %a.navbar-burger.burger{"aria-expanded" => "false", "aria-label" => "menu", "data-target" => "navbarBasicExample", :role => "button"}
           %span{"aria-hidden" => "true"}
           %span{"aria-hidden" => "true"}
@@ -19,12 +18,12 @@
       #navbarBasicExample.navbar-menu
         .navbar-start
           %a.navbar-item
-            Home
+            記事一覧
           %a.navbar-item
             Documentation
           .navbar-item.has-dropdown.is-hoverable
             %a.navbar-link
-              More
+              = current_user.name if user_signed_in?
             .navbar-dropdown
               %a.navbar-item
                 About
@@ -37,13 +36,9 @@
                 Report an issue
         .navbar-end
           .navbar-item
-            .buttons
-              %a.button.is-primary
-                %strong Sign up
-              %a.button.is-light
-                Log in
-
-    = link_to 'blog', root_path
+            %strong= link_to '新規登録', new_user_registration_path, class: 'button is-primary' unless user_signed_in?
+            = link_to 'ログイン', new_user_session_path, class: 'button is-light' unless user_signed_in?
+            %strong= link_to '新規投稿', new_article_path, class: 'button is-primary'if user_signed_in?
     = link_to '新規投稿', new_article_path if user_signed_in?
     = link_to 'サインアップ', new_user_registration_path unless user_signed_in?
     = link_to 'ログイン', new_user_session_path unless user_signed_in?
