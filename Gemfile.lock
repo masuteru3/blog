@@ -82,6 +82,8 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.8.0)
+      devise (>= 4.6)
     erubi (1.8.0)
     erubis (2.7.0)
     ffi (1.11.1)
@@ -253,6 +255,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   devise
+  devise-i18n
   haml-rails
   html2slim
   image_processing (~> 1.2)
