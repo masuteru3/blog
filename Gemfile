@@ -56,5 +56,8 @@ gem 'devise'
 gem 'slim-rails'
 gem 'html2slim'
 gem 'haml-rails'
+# 画像表示
 gem 'image_processing', '~> 1.2'
+# 日本語化
 gem 'devise-i18n'
+gem 'rails-i18n'
