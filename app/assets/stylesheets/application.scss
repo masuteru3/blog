@@ -4,13 +4,54 @@
   border: none;
 }
 
+.is-orange {
+  background-color: #fa745e !important;
+  &:hover {
+    background-color: #eb715f !important;
+  }
+}
+
+.wrapper {
+  width: 1080px;
+  margin: 0 auto;
+  padding-top: 60px;
+}
+
 .navbar.is-dark {
+  position: fixed;
   padding-left: 60px;
+  height: 58px;
+  width: 100%;
   .navbar-brand {
     font-weight: bold;
     font-size: 24px;
   }
+  .navbar-end {
+    padding-right: 42px;
+  }
   .button.is-light {
     margin-left: 19px;
+  }
+}
+
+
+// **************** content ****************
+.card {
+  margin: 50px 0;
+  border-radius: 7px;
+  .card-header {
+    border-radius: 7px 7px 0 0;
+    height: 65px;
+    font-size: 19px;
+    line-height: 43px;
+  }
+  .card-content {
+    max-height: 500px;
+    overflow: hidden;
+  }
+  .card-footer {
+    .non-active {
+      color: rgb(179, 179, 179);
+    }
   }
 }

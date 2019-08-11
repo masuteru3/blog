@@ -19,21 +19,20 @@
         .navbar-start
           %a.navbar-item
             記事一覧
-          %a.navbar-item
-            使い方
+        .navbar-end
           .navbar-item.has-dropdown.is-hoverable
             - if user_signed_in?
               %a.navbar-link
                 = current_user.name if user_signed_in?
               .navbar-dropdown
-                = link_to 'ログアウト', destroy_user_session_path(current_user), class: 'navbar-item', method: :delete if user_signed_in?
+                = link_to 'プロフィール', destroy_user_session_path(current_user), class: 'navbar-item', method: :delete if user_signed_in?
                 %hr.navbar-divider/
                 = link_to 'ログアウト', destroy_user_session_path(current_user), class: 'navbar-item', method: :delete if user_signed_in?
-        .navbar-end
           .navbar-item
-            %strong= link_to '新規登録', new_user_registration_path, class: 'button is-primary' unless user_signed_in?
+            %strong= link_to '新規登録', new_user_registration_path, class: 'button is-primary is-orange' unless user_signed_in?
             = link_to 'ログイン', new_user_session_path, class: 'button is-light' unless user_signed_in?
             %strong= link_to '新規投稿', new_article_path, class: 'button is-primary'if user_signed_in?
 
-    = render 'shared/flash'
-    = yield
+    .wrapper
+      = render 'shared/flash'
+      = yield

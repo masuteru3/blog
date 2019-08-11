@@ -1,10 +1,25 @@
-%h1
-  記事一覧
-
 - @articles.each do |article|
   = link_to article_path(article) do
-    %div
-      %hr
-        = article.title
-        = article.content
-
+    .card
+      %header.card-header
+        %p.card-header-title
+          = article.title
+          コメント:
+          = article.comments.count unless article.comments.count == 0
+        %a.card-header-icon{"aria-label" => "more options", :href => "#"}
+          %span.icon
+            %i.fas.fa-angle-down{"aria-hidden" => "true"}
+      .card-content
+        .content
+          = article.content
+          %br/
+          %time{:datetime => "2016-1-1"}= article.created_at
+          = article.user.name
+      %footer.card-footer
+        = link_to '詳細', article_path(article), class: 'card-footer-item'
+        -  if user_signed_in? && current_user.id == article.user_id
+          = link_to '編集', edit_article_path(article), class: 'card-footer-item'
+          = link_to '削除', article_path(article), class: 'card-footer-item', method: :delete, data: { confirm: '本当に消してもいいですか？'}
+        - else
+          %span.card-footer-item.non-active 編集
+          %span.card-footer-item.non-active 削除
