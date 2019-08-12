@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :check_correct_user, only: [:edit, :update, :destroy]
 
   def index
     @articles = Article.all.order(created_at: 'DESC')
@@ -47,5 +48,11 @@ class ArticlesController < ApplicationController
 
   def set_article
     @article = Article.find(params[:id])
+  end
+
+  def check_correct_user
+    unless user_signed_in? && current_user.id == @article.user_id
+      redirect_to root_path
+    end
   end
 end
