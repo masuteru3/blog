@@ -1,25 +1,38 @@
+%h1.is-size-3.has-text-weight-bold 記事一覧
 - @articles.each do |article|
   = link_to article_path(article) do
     .card
       %header.card-header
         %p.card-header-title
           = article.title
-          コメント:
-          = article.comments.count unless article.comments.count == 0
-        %a.card-header-icon{"aria-label" => "more options", :href => "#"}
-          %span.icon
-            %i.fas.fa-angle-down{"aria-hidden" => "true"}
       .card-content
         .content
+          .date
+            = article.user.name
+            ・
+            %time{:datetime => "2016-1-1"}= time_ago_in_words(article.created_at)
+            - unless article.comments.count == 0
+              ・
+              %i.far.fa-comment= article.comments.count
+
+          %br/  
           = article.content
           %br/
-          %time{:datetime => "2016-1-1"}= article.created_at
-          = article.user.name
       %footer.card-footer
-        = link_to '詳細', article_path(article), class: 'card-footer-item'
+        = link_to article_path(article), class: 'card-footer-item' do
+          %i.fas.fa-file-import
+          詳細
         -  if user_signed_in? && current_user.id == article.user_id
-          = link_to '編集', edit_article_path(article), class: 'card-footer-item'
-          = link_to '削除', article_path(article), class: 'card-footer-item', method: :delete, data: { confirm: '本当に消してもいいですか？'}
+          = link_to edit_article_path(article), class: 'card-footer-item' do
+            %i.fas.fa-pencil-alt
+            編集
+          = link_to article_path(article), class: 'card-footer-item', method: :delete, data: { confirm: '本当に記事を削除してもいいですか？'} do
+            %i.far.fa-trash-alt
+            削除
         - else
-          %span.card-footer-item.non-active 編集
-          %span.card-footer-item.non-active 削除
+          %span.card-footer-item.non-active
+            %i.fas.fa-pencil-alt
+            編集
+          %span.card-footer-item.non-active
+            %i.far.fa-trash-alt
+            削除
