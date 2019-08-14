@@ -1,23 +1,23 @@
-frozen_string_literal: true
+# frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
-  def create
-    render html: 'test'
-  end
+  # def create
+  #   render html: 'test'
+  # end
 
   # POST /resource/sign_in
-  def create
-    render html: 'test'
-  end
+  # def create
+  #   render html: 'test'
+  # end
 
   # DELETE /resource/sign_out
-  def destroy
-    redirect_to root_path
-    super
-  end
+  # def destroy
+  #   redirect_to root_path
+  #   super
+  # end
 
   # protected
 
