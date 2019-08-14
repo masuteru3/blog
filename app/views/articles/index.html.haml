@@ -8,9 +8,9 @@
       .card-content
         .content
           .date
-            = article.user.name
+            %time{:datetime => "2016-1-1"}= article.created_at.to_s(:published_on)
             ・
-            %time{:datetime => "2016-1-1"}= time_ago_in_words(article.created_at)
+            %strong= article.user.name
             - unless article.comments.count == 0
               ・
               %i.far.fa-comment= article.comments.count
@@ -19,14 +19,14 @@
           = article.content
           %br/
       %footer.card-footer
-        = link_to article_path(article), class: 'card-footer-item' do
+        = link_to article_path(article), class: 'card-footer-item has-text-dark' do
           %i.fas.fa-file-import
           詳細
         -  if user_signed_in? && current_user.id == article.user_id
-          = link_to edit_article_path(article), class: 'card-footer-item' do
+          = link_to edit_article_path(article), class: 'card-footer-item has-text-link' do
             %i.fas.fa-pencil-alt
             編集
-          = link_to article_path(article), class: 'card-footer-item', method: :delete, data: { confirm: '本当に記事を削除してもいいですか？'} do
+          = link_to article_path(article), class: 'card-footer-item has-text-danger', method: :delete, data: { confirm: '本当に記事を削除してもいいですか？'} do
             %i.far.fa-trash-alt
             削除
         - else

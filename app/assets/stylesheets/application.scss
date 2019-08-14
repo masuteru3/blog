@@ -1,5 +1,26 @@
 @import "bulma";
 
+// **************** デバイス ****************
+
+#error_explanation {
+  margin-bottom: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  background-color: $red;
+  border-radius: 12px;
+}
+
+.form_panel {
+  width: 790px;
+  margin: 0 auto;
+  .buttons {
+    display: flex;
+  }
+}
+
+
 // **************** 全体 ****************
 
 .flash {
@@ -13,15 +34,24 @@
     background-color: #6ee598;
     border-radius: 20px;
   }
+  .alert {
+    color: white;
+    background-color: $red;
+    border-radius: 20px;
+  }
 }
 
 h1 {
-  margin: 20px 0 30px;
-
+  margin: 10px 0 25px;
 }
 
 .field:not(:last-child) {
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
+}
+
+input[type=checkbox] {
+  transform: scale(1.4);
+  margin: 0 10px 0 5px;
 }
 
 trix-toolbar {
@@ -47,11 +77,12 @@ trix-content {
 }
 
 .wrapper {
-  width: 1080px;
+  width: 960px;
   margin: 0 auto;
   padding-top: 58px;
 }
 
+// **************** 全体 ****************
 .navbar.is-dark {
   position: fixed;
   padding-left: 60px;
@@ -64,6 +95,9 @@ trix-content {
   .navbar-end {
     padding-right: 42px;
   }
+  .has-dropdown {
+    margin-right: -12px;
+  }
   .button {
     margin-left: 19px;
   }
@@ -75,6 +109,11 @@ trix-content {
   margin-top: -26px;
   color: #aaa;
 }
+
+.article-control {
+  margin-top: 10px;
+}
+
 .article {
   margin-top: 40px;
 }
@@ -82,17 +121,19 @@ trix-content {
 
 // **************** content ****************
 .card {
+  // background: linear-gradient(-45deg, rgb(232, 232, 232), rgb(252, 252, 252)) fixed;
+  background: linear-gradient(to right, #f6fffa, #fefff3);
+  box-shadow: 0 2px 3px rgba(8, 8, 8, 0.15), 0 0 0 1px rgba(8, 8, 8, 0.15);
   a {
     color: #4a4a4a;
   }
-  margin: 50px 0;
+  margin: 30px 0 80px;
   border-radius: 7px;
   .card-header {
     border-radius: 7px 7px 0 0;
     height: 65px;
     font-size: 19px;
     line-height: 43px;
-    background: linear-gradient(-45deg, rgb(232, 232, 232), rgb(252, 252, 252)) fixed;
     // background: linear-gradient(-45deg, rgba(246, 255, 0, .95), rgba(255, 0, 161, .95)) fixed, url(http://www.webcreatorbox.com/sample/images/bg-cherrybrossam.jpg) fixed;
     .heading {
       margin: -10px 0 0;
@@ -104,6 +145,7 @@ trix-content {
     }
   }
   .card-content {
+    margin-bottom: 5px;
     .date {
       float: right;
       margin-top: -9px;
@@ -113,6 +155,11 @@ trix-content {
     overflow: hidden;
   }
   .card-footer {
+    opacity: 0.8;
+    border: 1px solid #eee;
+    .card-footer-item {
+      border: 1px solid #eee;
+    }
     .non-active {
       color: rgb(179, 179, 179);
     }

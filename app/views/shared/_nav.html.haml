@@ -1,0 +1,21 @@
+%nav.navbar.is-dark{"aria-label" => "main navigation", :role => "navigation"}
+  .navbar-brand
+    = link_to 'BLOG', root_path, class: 'navbar-item'
+    %a.navbar-burger.burger{"aria-expanded" => "false", "aria-label" => "menu", "data-target" => "navbarBasicExample", :role => "button"}
+      %span{"aria-hidden" => "true"}
+      %span{"aria-hidden" => "true"}
+      %span{"aria-hidden" => "true"}
+  #navbarBasicExample.navbar-menu
+    .navbar-end
+      .navbar-item.has-dropdown.is-hoverable
+        - if user_signed_in?
+          %a.navbar-link
+            = current_user.name if user_signed_in?
+          .navbar-dropdown
+            %p.navbar-item プロフィール(仮)
+            %hr.navbar-divider/
+            = link_to 'ログアウト(更新plz)', destroy_user_session_path(current_user), class: 'navbar-item', method: :delete if user_signed_in?
+      .navbar-item
+        %strong= link_to '新規登録', new_user_registration_path, class: 'button is-primary' unless user_signed_in?
+        = link_to 'ログイン', new_user_session_path, class: 'button is-light has-text-weight-bold has-text-dark' unless user_signed_in?
+        %strong= link_to '新規投稿', new_article_path, class: 'button is-primary is-outlined'if user_signed_in?

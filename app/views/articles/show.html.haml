@@ -3,14 +3,16 @@
   投稿者:
   = @article.user.name
   　作成日時:
-  = @article.created_at
+  = @article.created_at.to_s(:published_on)
   - unless @article.comments.count == 0
     　
     %i.far.fa-comment= @article.comments.count
 - if user_signed_in? && current_user.id == @article.user_id
   .article-control
-  = link_to '編集', edit_article_path(@article), class: 'button is-primary is-outlined is-small'
-  = link_to '削除', article_path(@article), method: :delete, class: 'button is-danger is-outlined is-small', data: { confirm: '本当に消してもいいですか？'}
+    = link_to '編集', edit_article_path(@article), class: 'button is-info is-outlined is-small has-text-weight-semibold'
+    %i.has-text-grey-light ・
+    = link_to '削除', article_path(@article), method: :delete, class: 'button is-danger is-outlined is-small has-text-weight-semibold', data: { confirm: '本当に消してもいいですか？'}
+    %hr/
 .article= @article.content
 
 
@@ -18,9 +20,9 @@
   %hr
   %strong コメント
   - if user_signed_in?
-    = form_for [@article, @comment] do |f|
+    = form_for [@article, @comment], id: 'new_comment' do |f|
       .control
-        = f.text_area :content, class: 'textarea'
+        = f.text_area :content, class: 'textarea', placeholder: 'なにかコメントしてみませんか？'
         = f.submit 'コメント', class: 'button is-secondary'
   - else
     %br/
