@@ -14,7 +14,7 @@
           .navbar-dropdown
             %p.navbar-item プロフィール(仮)
             %hr.navbar-divider/
-            = link_to 'ログアウト(更新plz)', destroy_user_session_path(current_user), class: 'navbar-item', method: :delete if user_signed_in?
+            = link_to 'ログアウト', logout_path(current_user), class: 'navbar-item', method: :delete if user_signed_in?
       .navbar-item
         %strong= link_to '新規登録', new_user_registration_path, class: 'button is-primary' unless user_signed_in?
         = link_to 'ログイン', new_user_session_path, class: 'button is-light has-text-weight-bold has-text-dark' unless user_signed_in?
