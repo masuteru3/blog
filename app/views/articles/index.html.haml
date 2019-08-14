@@ -1,10 +1,38 @@
-%h1
-  記事一覧
-
+%h1.is-size-3.has-text-weight-bold 記事一覧
 - @articles.each do |article|
   = link_to article_path(article) do
-    %div
-      %hr
-        = article.title
-        = article.content
+    .card
+      %header.card-header
+        %p.card-header-title
+          = article.title
+      .card-content
+        .content
+          .date
+            %time{:datetime => "2016-1-1"}= article.created_at.to_s(:published_on)
+            ・
+            %strong= article.user.name
+            - unless article.comments.count == 0
+              ・
+              %i.far.fa-comment= article.comments.count
 
+          %br/  
+          = article.content
+          %br/
+      %footer.card-footer
+        = link_to article_path(article), class: 'card-footer-item has-text-dark' do
+          %i.fas.fa-file-import
+          詳細
+        -  if user_signed_in? && current_user.id == article.user_id
+          = link_to edit_article_path(article), class: 'card-footer-item has-text-link' do
+            %i.fas.fa-pencil-alt
+            編集
+          = link_to article_path(article), class: 'card-footer-item has-text-danger', method: :delete, data: { confirm: '本当に記事を削除してもいいですか？'} do
+            %i.far.fa-trash-alt
+            削除
+        - else
+          %span.card-footer-item.non-active
+            %i.fas.fa-pencil-alt
+            編集
+          %span.card-footer-item.non-active
+            %i.far.fa-trash-alt
+            削除

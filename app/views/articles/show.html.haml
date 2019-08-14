@@ -1,25 +1,48 @@
-%h2= @article.title
-%p
-  投稿者：
+%h1.is-size-3.has-text-weight-bold= @article.title
+%p.information
+  投稿者:
   = @article.user.name
-%p= @article.content
-
+  　作成日時:
+  = @article.created_at.to_s(:published_on)
+  - unless @article.comments.count == 0
+    　
+    %i.far.fa-comment= @article.comments.count
 - if user_signed_in? && current_user.id == @article.user_id
-  = link_to '編集', edit_article_path(@article)
-  = link_to '削除', article_path(@article), method: :delete, data: { confirm: '本当に消してもいいですか？'}
+  .article-control
+    = link_to '編集', edit_article_path(@article), class: 'button is-info is-outlined is-small has-text-weight-semibold'
+    %i.has-text-grey-light ・
+    = link_to '削除', article_path(@article), method: :delete, class: 'button is-danger is-outlined is-small has-text-weight-semibold', data: { confirm: '本当に消してもいいですか？'}
+    %hr/
+.article= @article.content
 
-%hr
-%h2 コメント
-- if user_signed_in?
-  = form_for [@article, @comment] do |f|
-    = f.label :content
-    = f.text_area :content
-    = f.submit '投稿する'
 
-- @comments.each do |comment|
-  %p
-    = comment.content
-    = comment.created_at
-    - if user_signed_in? && current_user.id == comment.user_id
-      = link_to '削除', article_comment_path(@article, comment), method: :delete, data: { confirm: '本当に消してもいいですか？'}
-  %p= comment.user.name
+.comments
+  %hr
+  %strong コメント
+  - if user_signed_in?
+    = form_for [@article, @comment], id: 'new_comment' do |f|
+      .control
+        = f.text_area :content, class: 'textarea', placeholder: 'なにかコメントしてみませんか？'
+        = f.submit 'コメント', class: 'button is-secondary'
+  - else
+    %br/
+    = link_to 'ログイン', new_user_session_path
+    してコメントしてみませんか？
+  .comment-box
+    - @comments.each do |comment|
+      %article.media
+        %figure.media-left
+          %p.image.is-64x64
+            %img{:src => "https://bulma.io/images/placeholders/128x128.png"}/
+        .media-content
+          .content
+            %p
+              %strong= comment.user.name
+              %br/
+              = comment.content
+              %br/
+              %small
+                = time_ago_in_words(comment.created_at)
+                - if user_signed_in? && current_user.id == comment.user_id
+                  ·
+                  = link_to '削除', article_comment_path(@article, comment), method: :delete, data: { confirm: '本当に消してもいいですか？'}

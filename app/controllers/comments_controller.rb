@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :check_correct_user, only: [:destroy]
+
   def create
     @comment = current_user.comments.build(comment_params)
     if @comment.save
@@ -18,5 +20,12 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content).merge(article_id: params[:article_id])
+  end
+
+  def check_correct_user
+    comment = Comment.find(params[:id])
+    unless user_signed_in? && current_user.id == comment.user_id
+      redirect_to root_path
+    end
   end
 end

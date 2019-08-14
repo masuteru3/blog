@@ -1,18 +1,19 @@
-h2
-  | Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    br
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
+.form_panel
+  h1.is-size-3.has-text-weight-bold ログイン
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+      = f.label :email, class: 'label'
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: 'input'
+    .field
+      = f.label :password, class: 'label'
+      = f.password_field :password, autocomplete: "current-password", class: 'input'
+    - if devise_mapping.rememberable?
+      .field
+        = f.check_box :remember_me, class: 'checkbox'
+        = f.label :remember_me, class: 'has-text-weight-semibold'
+    .buttons
+      .actions
+        = f.submit "ログイン", class: 'button is-info has-text-weight-bold'
+      | 　or　
+      div
+        = link_to "新規登録", new_user_registration_path	, class: 'button is-secondary has-text-weight-bold'

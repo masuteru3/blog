@@ -7,12 +7,9 @@
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    %script{:src => "https://kit.fontawesome.com/2b147cf05e.js"}
   %body
-    = link_to 'blog', root_path
-    = link_to '新規投稿', new_article_path if user_signed_in?
-    = link_to 'サインアップ', new_user_registration_path unless user_signed_in?
-    = link_to 'ログイン', new_user_session_path unless user_signed_in?
-    = link_to 'ログアウト', destroy_user_session_path(current_user), method: :delete if user_signed_in?
-
-    = render 'shared/flash'
-    = yield
+    = render 'shared/nav'
+    .wrapper
+      = render 'shared/flash'
+      = yield
