@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments, only: [:create, :update, :destroy]
   end
+
+  delete '/logout', to: 'sessions#destroy'
 end
