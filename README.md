@@ -1,24 +1,23 @@
-# README
+# ベーシックな機能のBLOG
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+基本的な機能を搭載したブログです。  
+Rails Rails 6.0.0.rc2を使用し、リッチテキストの編集ができます。  
+action_text機能を使用。  
+http://blog-app0714.herokuapp.com/  
 
-Things you may want to cover:
+## 使用した技術
+- デプロイ
+  - heroku
+- ユーザー認証
+  - Devise
+- デザイン
+  - BULMA
+  - font-awesome
 
-* Ruby version
+## 機能
+- 記事を投稿する（リッチテキスト形式、画像貼り付け可）
+- コメントの送信
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 課題
+- AWSを使用して画像を長期保存したい。
+- その他いろいろな機能の追加。
