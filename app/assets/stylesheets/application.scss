@@ -157,8 +157,8 @@ trix-content {
   .card-footer {
     opacity: 0.8;
     border: 1px solid #eee;
-    .card-footer-item {
-      border: 1px solid #eee;
+    .card-footer-item:not(:last-child) {
+      border-right: 1px solid #eee
     }
     .non-active {
       color: rgb(179, 179, 179);
