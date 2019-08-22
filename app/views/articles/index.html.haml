@@ -19,14 +19,14 @@
           = article.content
           %br/
       %footer.card-footer
-        = link_to article_path(article), class: 'card-footer-item has-text-dark' do
+        = link_to article_path(article), class: 'card-footer-item has-text-dark has-text-weight-bold' do
           %i.fas.fa-file-import
           詳細
         -  if user_signed_in? && current_user.id == article.user_id
-          = link_to edit_article_path(article), class: 'card-footer-item has-text-link' do
+          = link_to edit_article_path(article), class: 'card-footer-item has-text-link has-text-weight-bold' do
             %i.fas.fa-pencil-alt
             編集
-          = link_to article_path(article), class: 'card-footer-item has-text-danger', method: :delete, data: { confirm: '本当に記事を削除してもいいですか？'} do
+          = link_to article_path(article), class: 'card-footer-item has-text-danger has-text-weight-bold', method: :delete, data: { confirm: '本当に記事を削除してもいいですか？'} do
             %i.far.fa-trash-alt
             削除
         - else
