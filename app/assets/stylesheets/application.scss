@@ -190,3 +190,13 @@ trix-content {
     }
   }
 }
+
+// **************** pagination ****************]
+.pagination {
+  margin: -10px 0 50px;
+  .is-current {
+    background-color: #ff3860;
+    border-color: #ff3860;
+  }
+}
+
