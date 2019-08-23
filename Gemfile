@@ -67,3 +67,4 @@ gem 'image_processing', '~> 1.2'
 gem 'devise-i18n'
 gem 'rails-i18n'
 gem "bulma-rails", "~> 0.7.5"
+gem 'kaminari'
